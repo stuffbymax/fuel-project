@@ -1,0 +1,23 @@
+        :root {
+            --bg: #0d0f14;
+            --panel: #13161e;
+            --border: #1f2535;
+            --accent: #e8ff47;
+            --accent2: #ff6b35;
+            --text: #cdd6f4;
+            --muted: #6c7a9c;
+            --green: #a6e3a1;
+            --red: #f38ba8;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Barlow', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }

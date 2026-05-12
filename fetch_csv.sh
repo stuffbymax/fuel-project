@@ -1,0 +1,1 @@
+# this will be a script to fetch the csv file from the server and save it to the local machine. It will be run as a cron job every hour to keep the data up to date.
