@@ -4,7 +4,7 @@
             --border: #1f2535;
             --accent: #e8ff47;
             --accent2: #ff6b35;
-            --text: #cdd6f4;
+            --text: #ffffff;
             --muted: #6c7a9c;
             --green: #a6e3a1;
             --red: #f38ba8;
@@ -21,3 +21,17 @@
             flex-direction: column;
             overflow: hidden;
         }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0;
+        }
+        #map {
+            flex: 1;
+            margin: 20px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+        }
+
+
+        

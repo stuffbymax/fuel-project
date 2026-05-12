@@ -6,14 +6,10 @@
   <title>Fuel Info</title>
   <link rel="stylesheet" href="./css/site.css">
    <link rel="stylesheet" href="./css/leaflet.css"/>
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
-<style>
-    #map {
-        height: 400px;
-    }
-</style>
 <link rel="stylesheet" href="./css/style.css"/>
  <script src="./js/leaflet.js"></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.css">
+<script src="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.js"></script> -->
 </head>
 <body>
 	<h1>Local Fuel Info</h1>
@@ -27,6 +23,15 @@
 <p>Premium: <span id="e5_price">Loading...</span></p>
 
 <p>Diesel: <span id="diesel_price">Loading...</span></p>
+
+
+<h2>Last Updated: <span id="last_updated">Loading...</span></h2>
+
+<script src="./js/last_updated.js"></script>
+<script>
+  document.getElementById("last_updated").textContent = window.LAST_UPDATED;
+</script>
+
 	
 </body>
 </html>
