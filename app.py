@@ -121,5 +121,11 @@ def download_csv():
                 file.write(response.content)
         time.sleep(3600) # sleep for 1 hour
 
+# # start the csv download in a separate thread
+# import threading
+# csv_thread = threading.Thread(target=download_csv)
+# csv_thread.start()
+
+# run the flask app
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000, debug=True)
