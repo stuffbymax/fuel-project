@@ -1,0 +1,24 @@
+nav {
+  background: #1e293b;
+  padding: 1rem;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 1rem;
+}
+
+nav a {
+  color: #e2e8f0;
+  text-decoration: none;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
