@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flask Template Example</title>
+</head>
+<body>
+    <h1>Welcome{% if name %}, {{ name }}{% endif %}!</h1>
+
+    <form method="POST">
+        <label for="name">Enter your name:</label>
+        <input type="text" id="name" name="name" placeholder="Your name">
+        <button type="submit">Submit</button>
+    </form>
+
+    {% if name %}
+        <p>Hello, {{ name }}! This is dynamic content rendered by Flask.</p>
+    {% endif %}
+</body>
+</html>
