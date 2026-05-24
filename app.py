@@ -1,7 +1,7 @@
 """
 name: Fuel Price Flask API
 description: REST API server wrapping the fuel price pipeline.
-             Serves per-city fuel data and triggers pipeline runs.
+             Serves UK per-city fuel data.
 author: MartinP
 license: MIT
 """
@@ -19,14 +19,25 @@ import os
 import requests
 from datetime import datetime
 import time
+import threading
 
 # -----------------------------
 # Load and clean data
 app = Flask(__name__)
 CORS(app)
 
+@app.before_request
+def load_data():
+    # check if the csv file exists in the local directory
+    if not os.path.exists('updated_data.csv'):
+        # if not, download it from the url and save it to the local directory
+        url = 'https://www.fuel-finder.service.gov.uk/internal/v1.0.2/csv/get-latest-fuel-prices-csv'
+        response = requests.get(url)
+        with open('updated_data.csv', 'wb') as file:
+            file.write(response.content)
+
 # endpoint for getting all data
-@app.route('/data', methods=['GET'])
+@app.route('/fuel', methods=['GET'])
 def get_data():
     data = []
     with open('updated_data.csv', 'r') as file:
@@ -41,7 +52,7 @@ take an data from the csv file and return the data for the city that is passed i
 eg 
 forecourts.location.latitude,forecourts.location.longitude,forecourts.location.city,forecourts.location.postcode,forecourts.location.county,forecourts.location.country,forecourts.fuel_price.E5,forecourts.fuel_price.E10,forecourts.fuel_price.B7S,forecourts.fuel_price.B7P,forecourts.fuel_price.B10,forecourts.fuel_price.HVO
 '''
-@app.route('/data/<city>', methods=['GET'])
+@app.route('/fuel/<city>', methods=['GET'])
 def get_data_by_city(city):
     data = []
     with open('updated_data.csv', 'r') as file:
@@ -86,11 +97,11 @@ def get_data_by_city(city):
         return jsonify({'message': 'City not found'}), 404
     return jsonify(data)
 
-@app.route('/about', methods=['GET'])
+@app.route('/api/fuel/about', methods=['GET'])
 def about():
     return jsonify({
         'name': 'Fuel Price Flask API',
-        'description': 'REST API server wrapping the fuel price pipeline. Serves per-city fuel data and triggers pipeline runs. also i have no idea what the fuel types are so expect some incorrect data',
+        'description': 'REST API server wrapping the fuel price pipeline. Serves UK per-city fuel data. also i have no idea what the fuel types are so expect some incorrect data',
         'author': 'MartinP',
         'data_source': 'UK government fuel price data',
         'url': 'https://www.fuel-finder.service.gov.uk/internal/v1.0.2/csv/get-latest-fuel-prices-csv',

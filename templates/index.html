@@ -1,19 +1,44 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Flask Template Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fuel Info</title>
+  <link rel="stylesheet" href="./static/css/map.css">
+   <link rel="stylesheet" href="./static/css/leaflet.css"/>
+<link rel="stylesheet" href="./static/css/style.css"/>
+<link rel="stylesheet" href="./static/css/nav.css"/>
+ <script src="./static/js/leaflet.js"></script>
+<!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.css">
+<script src="https://unpkg.com/leaflet-search@3.0.9/dist/leaflet-search.min.js"></script> -->
 </head>
+<nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+  </ul>
+</nav>
 <body>
-    <h1>Welcome{% if name %}, {{ name }}{% endif %}!</h1>
+	<h1>uk Fuel Info</h1>
+         <div id="map"></div>
+	 <script src="./static/js/my_map.js"></script>
 
-    <form method="POST">
-        <label for="name">Enter your name:</label>
-        <input type="text" id="name" name="name" placeholder="Your name">
-        <button type="submit">Submit</button>
-    </form>
+<h2>Prices:</h2>
 
-    {% if name %}
-        <p>Hello, {{ name }}! This is dynamic content rendered by Flask.</p>
-    {% endif %}
+<p>Unleaded: <span id="e10_price">Loading...</span></p>
+
+<p>Premium: <span id="e5_price">Loading...</span></p>
+
+<p>Diesel: <span id="diesel_price">Loading...</span></p>
+
+
+<h2>Last Updated: <span id="last_updated">Loading...</span></h2>
+
+<script src="./static/js/last_updated.js"></script>
+<script>
+  document.getElementById("last_updated").textContent = window.LAST_UPDATED;
+</script>
+
+	
 </body>
 </html>
